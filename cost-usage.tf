@@ -1,15 +1,7 @@
-resource "aws_cur_report_definition" "example_cur_report_definition" {
-  report_name                = "map-migrated-rtis"
-  time_unit                  = "DAILY"
-  format                     = "Parquet"
-  compression                = "Parquet"
-  additional_schema_elements = ["RESOURCES"]
-  s3_bucket                  = aws_s3_bucket.cost_and_usage.id
-  s3_region                  = "us-east-1"
-  s3_prefix                  = "map-migrated"
-  additional_artifacts       = ["ATHENA"]
-  report_versioning = "OVERWRITE_REPORT"
+provider "aws" {
+   region = "us-east-1"
 }
+
 
 resource "aws_s3_bucket" "cost_and_usage" {
   bucket = "terraform-cost-abdul" // replace your desired bucket name for creation
@@ -47,4 +39,17 @@ resource "aws_s3_bucket_policy" "cost_and_usage" {
 
 POLICY
 
+}
+  
+resource "aws_cur_report_definition" "example_cur_report_definition" {
+  report_name                = "map-migrated-rtis"
+  time_unit                  = "DAILY"
+  format                     = "Parquet"
+  compression                = "Parquet"
+  additional_schema_elements = ["RESOURCES"]
+  s3_bucket                  = aws_s3_bucket.cost_and_usage.id
+  s3_region                  = "us-east-1"
+  s3_prefix                  = "map-migrated"
+  additional_artifacts       = ["ATHENA"]
+  report_versioning = "OVERWRITE_REPORT"
 }
