@@ -6,6 +6,11 @@ provider "aws" {
 resource "aws_s3_bucket" "cost_and_usage" {
   bucket = "terraform-cost-abdulu" // replace your desired bucket name for creation
   acl    = "private"
+  tags = {
+    Name        = "map-migrated"
+    App = "map-migrated-app"
+    map-migration-project-id = "MPE13934"
+  }
 }
 
 resource "aws_s3_bucket_policy" "cost_and_usage" {
