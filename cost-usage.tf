@@ -4,7 +4,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "cost_and_usage" {
-  bucket = "terraform-cost-abdul" // replace your desired bucket name for creation
+  bucket = "terraform-cost-abdulu" // replace your desired bucket name for creation
   acl    = "private"
 }
 
